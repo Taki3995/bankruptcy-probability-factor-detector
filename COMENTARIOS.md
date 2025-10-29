@@ -70,3 +70,15 @@ E.- VARIABLES REDUNDANTES / POCO UTILES
 
 - revisar boxplot
 
+
+## Preprocesamiento v3
+
+- CORRECCIÓN: primero dividiremos los datos y luego los ajustaremos, para que solo se ajusten los datos de entrenamiento. Luego se aplica la transformacion a los datos de entrenamiento y a los de prueba.
+
+- MODIFICACION a la funcion limpiar columnas, para que no se eliminen variables prioritarias sin condicionesanteriores.
+
+- Se implementa el calculo del VIF (factor de inflación de la varianza) para detectar y eliminr la multicolinealidad que la correlacion por pares quizas no esta viendo. 
+
+- Se corrige la funcion pipeline para implementar el vif y para que se guarden los transformers (imputer y scalers) y asi poder simplemente cargarlos en otro script.
+
+

@@ -36,7 +36,3 @@ Para remuestreo y validación:
 Para comparar:
 - Evaluar trade-off sesgo-varianza entre modelos clásicos y regularizados.
 - Comparar métricas como AUC, precisión, recall, F1-score.
-
-
-
-

@@ -36,9 +36,9 @@ def entrenar_evaluar_modelo(modelo, X_train, y_train, X_test, y_test, nombre_mod
     filename = f"matriz_confusion_{nombre_modelo.replace(' ', '_').lower()}.png"
     ruta_guardado = os.path.join(ruta_salida_reportes, filename)
     plt.savefig(ruta_guardado)
+    plt.show()
     plt.close()
     print(f"Matriz de confusión guardada en: {ruta_guardado}")
-    plt.show()
     
     return modelo
 
@@ -59,9 +59,9 @@ def comparar_curvas_roc(modelos_entrenados, nombres, X_test, y_test, ruta_salida
     plt.grid(True)
     ruta_guardado = os.path.join(ruta_salida_reportes, 'comparacion_roc_auc.png')
     plt.savefig(ruta_guardado)
+    plt.show()
     plt.close()
     print(f"Gráfico ROC comparativo guardado en: {ruta_guardado}")
-    plt.show()
 
 # --- Función Principal del Módulo ---
 def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, ruta_salida_reportes):

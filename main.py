@@ -1,5 +1,6 @@
 # main.py
 import os
+import joblib
 from src.preprocesamiento import pipeline as preprocesar_datos
 from src.modelado import ejecutar_modelado
 from imblearn.over_sampling import SMOTE
@@ -45,6 +46,15 @@ def main():
     print("Distribución de clases de entrenamiento (después de SMOTE):")
     print(y_train_resampled.value_counts(normalize=True))
     print("="*60)
+
+    print("\nGuardando datos de entrenamiento (con SMOTE) para validación...")
+    try:
+        # X_train_resampled es un DataFrame de pandas, y_train_resampled es una Serie
+        joblib.dump(X_train_resampled, os.path.join(RUTA_MODELOS, 'X_train_resampled.joblib'))
+        joblib.dump(y_train_resampled, os.path.join(RUTA_MODELOS, 'y_train_resampled.joblib'))
+        print(f"Datos guardados exitosamente en {RUTA_MODELOS}")
+    except Exception as e:
+        print(f"Error al guardar los datos: {e}")
 
     # --- 3.- Ejecutar Modelado ---
     titulo2 = "Iniciando Modelado"

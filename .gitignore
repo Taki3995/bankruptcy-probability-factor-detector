@@ -1,4 +1,3 @@
-imputer.joblib
-scaler.joblib
+models/
 __pycache__/
-columnas_finales.joblib
+reports/

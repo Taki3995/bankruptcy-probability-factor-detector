@@ -61,10 +61,6 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos):
     Compara un modelo de Regresión Logística (MLE) con uno de Regresión Ridge (L2) 
     con selección de hiperparámetros por CV.
     """
-    print("\n" + "="*60)
-    print("Iniciando Etapa de Modelado")
-    print("="*60 + "\n")
-
     # --- Modelo 1: Regresión Logística (MLE) ---
     modelo_mle = LogisticRegression(
         penalty='none',          # Para usar máxima verosimilitud sin ninguna regularización

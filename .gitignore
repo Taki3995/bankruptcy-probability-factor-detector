@@ -1,2 +1,4 @@
-/imputer.joblib
-/scaler.joblib
+imputer.joblib
+scaler.joblib
+__pycache__/
+columnas_finales.joblib

@@ -2,6 +2,7 @@
 import os
 from src.preprocesamiento import pipeline as preprocesar_datos
 from src.modelado import ejecutar_modelado
+from imblearn.over_sampling import SMOTE
 # otras funciones necesarias 
 
 def main():
@@ -33,11 +34,31 @@ def main():
 
     print("\n--- Preprocesamiento Finalizado ---")
 
+    # Aplicar SMOTE
+    print("\n" + "="*60)
+    texto5 = "Aplicando SMOTE para balancear el set de entrenamiento..."
+    print(texto5.center)
+    smote = SMOTE(random_state=42)
+    X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+    print(f"Shape original de entrenamiento: {X_train.shape}")
+    print(f"Shape remuestreado de entrenamiento: {X_train_resampled.shape}")
+    print("Distribución de clases de entrenamiento (después de SMOTE):")
+    print(y_train_resampled.value_counts(normalize=True))
+    print("="*60)
+
     # --- 3.- Ejecutar Modelado ---
     titulo2 = "Iniciando Modelado"
     print("\n" + "="*60)
     print(titulo2.center(60))
     print("="*60)
+
+    # Pasar datos remuestreados al modelo
+    modelo_logistico, modelo_ridge = ejecutar_modelado(
+        X_train_resampled, y_train_resampled,      # <-- Datos balanceados para entrenar
+        X_test, y_test,                            # <-- Datos reales (desbalanceados) para probar
+        RUTA_MODELOS, 
+        RUTA_REPORTES
+    )
     
     modelo_logistico, modelo_ridge = ejecutar_modelado(X_train, y_train, X_test, y_test, RUTA_MODELOS, RUTA_REPORTES)  
     print("\n--- Modelado Finalizado ---")

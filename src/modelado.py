@@ -71,7 +71,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, rut
     # --- Modelo 1: Regresión Logística (MLE) ---
     modelo_mle = LogisticRegression(
         penalty=None,            # Para usar máxima verosimilitud sin ninguna regularización
-        class_weight='balanced', # Para manejar el gran desbalance de datos
+        # class_weight='balanced',  # Datos balanceados con SMOTE
         solver='lbfgs',          # lbfgs soporta penalty none
         max_iter=5000,           # 'saga' a veces necesita más iteraciones
         random_state=42
@@ -85,7 +85,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, rut
         cv=5,                     # k-folds = 5
         penalty='l2',             # l2 es regularización Ridge
         scoring='roc_auc',        # Métrica para optimizar (¡clave para desbalance!)
-        class_weight='balanced',
+        # class_weight='balanced',  # Datos balanceados con SMOTE
         solver='lbfgs',           # lbfgs por consistencia
         max_iter=5000,
         random_state=42

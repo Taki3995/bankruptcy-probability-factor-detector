@@ -94,24 +94,11 @@ def limpiar_columnas(df, corr_pairs, prioritarias):
     constantes = [col for col in df.columns if df[col].nunique() == 1 and col != 'Bankrupt?']
     print(f"Columnas constantes eliminadas: {constantes}")
 
-    # Eliminar una de cada par altamente correlacionado, protegiendo las prioritarias
-    redundantes = set()
-    for _, row in corr_pairs.iterrows():
-        var1, var2 = row['Var1'], row['Var2']
-        
-        # Si una es prioritaria y la otra no, eliminar la no prioritaria
-        if var1 in prioritarias and var2 not in prioritarias:
-            redundantes.add(var2)
-        elif var2 in prioritarias and var1 not in prioritarias:
-            redundantes.add(var1)
-        # Si ninguna es prioritaria, eliminar la segunda (como antes)
-        elif var1 not in prioritarias and var2 not in prioritarias:
-            redundantes.add(var2)
-        # Si ambas son prioritarias, no eliminar ninguna por ahora
-        
-    eliminar = list(set(constantes) | redundantes)
-    print(f"\nColumnas eliminadas automáticamente ({len(eliminar)}):")
-    print(sorted(eliminar)) # Ordenar para una salida consistente
+    # Ridge maneja este problema
+    print("\n--- PASO DE ELIMINACIÓN POR CORRELACIÓN DESACTIVADO ---")
+    
+    eliminar = constantes # Ahora solo eliminamos las constantes
+    
     return df.drop(columns=eliminar, errors="ignore")
 
 # TOP 15 Variables clave

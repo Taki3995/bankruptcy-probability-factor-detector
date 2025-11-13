@@ -64,7 +64,7 @@ def comparar_curvas_roc(modelos_entrenados, nombres, X_test, y_test, ruta_salida
     plt.show()
 
 # --- Función Principal del Módulo ---
-def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_reportes):
+def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, ruta_salida_reportes):
     """
     Función principal para ejecutar el modelado y la evaluación de los modelos.
     Compara un modelo de Regresión Logística (MLE) con uno de Regresión Ridge (L2) 
@@ -102,7 +102,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_reportes):
     
     print("Entrenando Modelo 2: Regresión Ridge con K-Folds CV...")
     modelo_ridge_cv_entrenado = entrenar_evaluar_modelo(
-        modelo_ridge_cv, X_train, y_train, X_test, y_test, "Regresión Ridge (con CV), ruta_salida_reportes"
+        modelo_ridge_cv, X_train, y_train, X_test, y_test, "Regresión Ridge (con CV), ruta_salida_reportes", ruta_salida_reportes
     )
     
     # Reportamos el mejor hiperparámetro encontrado
@@ -119,8 +119,8 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_reportes):
     
     # --- Guardar Modelos Entrenados ---
     print("\nGuardando modelos entrenados...")
-    joblib.dump(modelo_mle_entrenado, os.path.join(ruta_salida_reportes, 'modelo_mle.joblib'))
-    joblib.dump(modelo_ridge_cv_entrenado, os.path.join(ruta_salida_reportes, 'modelo_ridge_cv.joblib'))
+    joblib.dump(modelo_mle_entrenado, os.path.join(ruta_salida_modelos, 'modelo_mle.joblib'))
+    joblib.dump(modelo_ridge_cv_entrenado, os.path.join(ruta_salida_modelos, 'modelo_ridge_cv.joblib'))
     print("Modelos guardados exitosamente.")
     
     return modelo_mle_entrenado, modelo_ridge_cv_entrenado

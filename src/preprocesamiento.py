@@ -7,7 +7,7 @@ import seaborn as sns
 import joblib
 import os
 
-from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 from scipy.stats.mstats import winsorize
 from statsmodels.stats.outliers_influence import variance_inflation_factor
@@ -230,7 +230,7 @@ def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     """
 
     # 6. Escalado Robusto (Ajustar en Train, transformar en ambos)
-    scaler = RobustScaler()
+    scaler = StandardScaler()
     # Quitar vif
     # X_train_scaled = pd.DataFrame(scaler.fit_transform(X_train_vif), columns=columnas_finales)
     # X_test_scaled = pd.DataFrame(scaler.transform(X_test_vif), columns=columnas_finales)

@@ -99,4 +99,6 @@ Splits reproducibles:
 
 Crear hold-out test set estratificado (ej. 20% estratificado por Bankrupt?) y usar el 80% restante para entrenamiento/validación (CV). Guardar seed.
 
+### preprocesamiento 3.0
 
+Desactivar el vif ya que se tuvieron resultados de auc muy malos %53 

@@ -39,7 +39,6 @@ def exploracion_inicial(df, ruta_salida_reportes):
     plt.title("Distribución de empresas quebradas vs no quebradas")
     ruta_guardado = os.path.join(ruta_salida_reportes, 'distribucion_objetivo.png')
     plt.savefig(ruta_guardado)
-    plt.show()
     plt.close() # Cierra la figura para liberar memoria
     print(f"Gráfico de distribución guardado en: {ruta_guardado}")
 
@@ -183,7 +182,6 @@ def graficar_boxplots(X, prioritarias, ruta_salida_reportes):
     
     ruta_guardado = os.path.join(ruta_salida_reportes, 'boxplots_prioritarias.png')
     plt.savefig(ruta_guardado)
-    plt.show()
     plt.close()
     print(f"Gráfico de boxplots guardado en: {ruta_guardado}")
     
@@ -197,7 +195,6 @@ def graficar_correlacion(X, ruta_salida_reportes):
 
     ruta_guardado = os.path.join(ruta_salida_reportes, 'heatmap_correlacion.png')
     plt.savefig(ruta_guardado)
-    plt.show()
     plt.close()
     print(f"Gráfico de correlación guardado en: {ruta_guardado}")
     

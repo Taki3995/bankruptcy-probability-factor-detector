@@ -230,6 +230,9 @@ def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     X_train_imputed = pd.DataFrame(imputer.fit_transform(X_train), columns=cols_train)
     X_test_imputed = pd.DataFrame(imputer.transform(X_test), columns=cols_test)
     
+    columnas_finales = cols_train.tolist() # Usar todas las columnas en vez de quitar con vif
+
+    """
     # 5. Selección de VIF (Ajustar SOLO en Train)
     columnas_finales = calcular_vif_selectivo(X_train_imputed, umbral=10.0)
     
@@ -237,11 +240,16 @@ def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     X_train_vif = X_train_imputed[columnas_finales]
     X_test_vif = X_test_imputed[columnas_finales]
     print(f"Shape después de VIF: Train {X_train_vif.shape}, Test {X_test_vif.shape}")
+    """
 
     # 6. Escalado Robusto (Ajustar en Train, transformar en ambos)
     scaler = RobustScaler()
-    X_train_scaled = pd.DataFrame(scaler.fit_transform(X_train_vif), columns=columnas_finales)
-    X_test_scaled = pd.DataFrame(scaler.transform(X_test_vif), columns=columnas_finales)
+    # Quitar vif
+    # X_train_scaled = pd.DataFrame(scaler.fit_transform(X_train_vif), columns=columnas_finales)
+    # X_test_scaled = pd.DataFrame(scaler.transform(X_test_vif), columns=columnas_finales)
+
+    X_train_scaled = pd.DataFrame(scaler.fit_transform(X_train_imputed), columns=columnas_finales)
+    X_test_scaled = pd.DataFrame(scaler.transform(X_test_imputed), columns=columnas_finales)
     
     # 7. EDA final (Sobre el Train Set procesado)
     print("\nRealizando EDA sobre el conjunto de entrenamiento preprocesado...")

@@ -100,8 +100,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, rut
     
     print("Entrenando Modelo 2: Regresión Ridge con K-Folds CV...")
     modelo_ridge_cv_entrenado = entrenar_evaluar_modelo(
-        modelo_ridge_cv, X_train, y_train, X_test, y_test, "Regresión Ridge (con CV), ruta_salida_reportes", ruta_salida_reportes
-    )
+        modelo_ridge_cv, X_train, y_train, X_test, y_test, "Regresión Ridge (con CV)", ruta_salida_reportes)
     
     # Reportamos el mejor hiperparámetro encontrado
     print("\n--- Resultados de la Validación Cruzada (Ridge) ---")

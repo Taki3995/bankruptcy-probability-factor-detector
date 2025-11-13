@@ -28,7 +28,7 @@ def cargar_datos(ruta_csv):
     return df
 
 # Exploración inicial
-def exploracion_inicial(df):
+def exploracion_inicial(df, ruta_salida_reportes):
     """
     Ve la distribución de las empresas quebradas vs las no quebradas
     """
@@ -37,7 +37,10 @@ def exploracion_inicial(df):
 
     sns.countplot(x='Bankrupt?', data=df)
     plt.title("Distribución de empresas quebradas vs no quebradas")
-    plt.show()
+    ruta_guardado = os.path.join(ruta_salida_reportes, 'distribucion_objetivo.png')
+    plt.savefig(ruta_guardado)
+    plt.close() # Cierra la figura para liberar memoria
+    print(f"Gráfico de distribución guardado en: {ruta_guardado}")
 
 # Valores Faltantes
 def revisar_nulos(df):
@@ -162,7 +165,7 @@ def calcular_vif_selectivo(X_imputed, umbral=10.0):
     return variables.columns.tolist()
 
 # ---- GRÁFICOS ----
-def graficar_boxplots(X, prioritarias):
+def graficar_boxplots(X, prioritarias, ruta_salida_reportes):
     # Filtrar para graficar solo las variables prioritarias que existen en el DataFrame X
     vars_a_graficar = [var for var in prioritarias if var in X.columns]
     
@@ -176,25 +179,34 @@ def graficar_boxplots(X, prioritarias):
     plt.xlabel("Valor estandarizado")
     plt.ylabel("Variables")
     plt.tight_layout()
-    plt.show()
+    
+    ruta_guardado = os.path.join(ruta_salida_reportes, 'boxplots_prioritarias.png')
+    plt.savefig(ruta_guardado)
+    plt.close()
+    print(f"Gráfico de boxplots guardado en: {ruta_guardado}")
+    # plt.show()
     
     print("\nVariables prioritarias incluidas en el boxplot:")
     print(vars_a_graficar)
 
-def graficar_correlacion(X):
+def graficar_correlacion(X, ruta_salida_reportes):
     plt.figure(figsize=(12,10))
     sns.heatmap(X.corr(), cmap='coolwarm', center=0, annot=False)
-    plt.title("Correlación entre variables preprocesadas")
-    plt.show()
+    plt.title("Correlación entre variables (Train Set, Post-Procesado)")
+
+    ruta_guardado = os.path.join(ruta_salida_reportes, 'heatmap_correlacion.png')
+    plt.savefig(ruta_guardado)
+    plt.close()
+    print(f"Gráfico de correlación guardado en: {ruta_guardado}")
 
 # -------- FUNCIÓN PRINCIPAL --------
-def pipeline(ruta_csv, ruta_salida_modelos):
+def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     """
     Pipeline completo de preprocesamiento. Lee datos, limpia, procesa y guarda los transformers (imputer y scaler)
     """
     # 1. Carga y Limpieza inicial
     df = cargar_datos(ruta_csv)
-    exploracion_inicial(df)
+    exploracion_inicial(df, ruta_salida_reportes)
     
     df_w = winsorizar_df(df)
     corr_pairs = correlaciones_fuertes(df_w, threshold=0.95)
@@ -234,8 +246,8 @@ def pipeline(ruta_csv, ruta_salida_modelos):
     
     # 7. EDA final (Sobre el Train Set procesado)
     print("\nRealizando EDA sobre el conjunto de entrenamiento preprocesado...")
-    graficar_boxplots(X_train_scaled, prioritarias_lista)
-    graficar_correlacion(X_train_scaled)
+    graficar_boxplots(X_train_scaled, prioritarias_lista, ruta_salida_reportes)
+    graficar_correlacion(X_train_scaled, ruta_salida_reportes)
 
     # 8. Guardar Transformers (Usando la ruta de salida)
     os.makedirs(ruta_salida_modelos, exist_ok=True) # Asegura que la carpeta 'models/' exista

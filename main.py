@@ -60,7 +60,6 @@ def main():
         RUTA_REPORTES
     )
     
-    modelo_logistico, modelo_ridge = ejecutar_modelado(X_train, y_train, X_test, y_test, RUTA_MODELOS, RUTA_REPORTES)  
     print("\n--- Modelado Finalizado ---")
 
     # --- 4.- Ejecutar Validación (Próximo paso) ---

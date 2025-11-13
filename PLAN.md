@@ -102,3 +102,5 @@ Crear hold-out test set estratificado (ej. 20% estratificado por Bankrupt?) y us
 ### preprocesamiento 3.0
 
 Desactivar el vif ya que se tuvieron resultados de auc muy malos %53 
+
+despues de probar primero quitandoel vif, luego haciendo que la limpieza de columnas haga menos cosas dejandole ese trabajo a ridge, y haciendo un remuestreo con Smote para balancear, nos dimos cuenta que muchas de las cosas que hcimos, incluida la winzorizacion, estaban balanceando los daots. es por esto que cabiamos de robust scaler a standard scaler

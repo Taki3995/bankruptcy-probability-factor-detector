@@ -27,4 +27,18 @@ Corporate Bankruptcy Prediction:
 ## Métodos a Utilizar
 1. Estimación y Shrinkage
 - Regresión Logística (MLE): Estimador clásico sin regularización (penalty=None).
-Regresión Ridge (L2): Estimador con shrinkage L2 para manejar multicolinealidad, con selección de $\lambda$ (lambda) vía Validación Cruzada.Regresión Lasso (L1): Estimador con shrinkage L1 para realizar selección de variables, también con selección de $\lambda$ vía Validación Cruzada.2. Preprocesamiento y Manejo de DatosWinsorización: Para controlar valores atípicos (outliers) extremos.SMOTE: Remuestreo para balancear el set de entrenamiento (50/50).StandardScaler: Estandarización de variables (media 0, varianza 1) para la correcta convergencia de los modelos.3. Validación y RemuestreoValidación Cruzada (K-Folds): Usada dentro de LogisticRegressionCV para seleccionar el mejor hiperparámetro de regularización.Bootstrap: Usado para re-muestrear los datos de entrenamiento y estimar los intervalos de confianza del 95% para los coeficientes de los modelos.4. Comparación y MétricaMétricas Clave: AUC (Area Under the Curve) como métrica principal de rendimiento, apoyada por Precisión, Recall y F1-Score.Análisis Gráfico: Comparación visual del trade-off sesgo-varianza a través de los intervalos de confianza obtenidos por Bootstrap.
+- Regresión Ridge (L2): Estimador con shrinkage L2 para manejar multicolinealidad, con selección de $\lambda$ vía Validación Cruzada.
+- Regresión Lasso (L1): Estimador con shrinkage L1 para realizar selección de variables, también con selección de $\lambda$ vía Validación Cruzada.
+
+2. Preprocesamiento y Manejo de Datos
+- Winsorización: Para controlar valores atípicos (outliers) extremos.
+- SMOTE: Remuestreo para balancear el set de entrenamiento (50/50).
+- StandardScaler: Estandarización de variables (media 0, varianza 1) para la correcta convergencia de los modelos.
+
+3. Validación y RemuestreoValidación Cruzada (K-Folds): 
+- Usada dentro de LogisticRegressionCV para seleccionar el mejor hiperparámetro de regularización.
+- Bootstrap: Usado para re-muestrear los datos de entrenamiento y estimar los intervalos de confianza del 95% para los coeficientes de los modelos.
+
+4. Comparación y MétricaMétricas Clave: 
+- AUC (Area Under the Curve) como métrica principal de rendimiento, apoyada por Precisión, Recall y F1-Score.
+- Análisis Gráfico: Comparación visual del trade-off sesgo-varianza a través de los intervalos de confianza obtenidos por Bootstrap.

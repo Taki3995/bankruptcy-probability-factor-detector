@@ -63,7 +63,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos):
     """
     # --- Modelo 1: Regresión Logística (MLE) ---
     modelo_mle = LogisticRegression(
-        penalty='none',          # Para usar máxima verosimilitud sin ninguna regularización
+        penalty=None,          # Para usar máxima verosimilitud sin ninguna regularización
         class_weight='balanced', # Para manejar el gran desbalance de datos
         solver='saga',           # 'liblinear' no soporta 'penalty=none'
         max_iter=5000,           # 'saga' a veces necesita más iteraciones

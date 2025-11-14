@@ -100,13 +100,13 @@ def validar_modelo(n_bootstraps = 1000):
     
     # Crear un DataFrame de resumen
     summary = pd.DataFrame({
-        'Coef_MLE_Media': df_coefs_mle.mean(),
-        'Coef_MLE_IC_2.5%': ic_mle.loc[0.025],
-        'Coef_MLE_IC_97.5%': ic_mle.loc[0.975],
-        'Coef_Ridge_Media': df_coefs_ridge.mean(),
-        'Coef_Ridge_IC_2.5%': ic_ridge.loc[0.025],
-        'Coef_Ridge_IC_97.5%': ic_ridge.loc[0.025],
-    })
+            'Coef_MLE_Media': df_coefs_mle.mean(),
+            'Coef_MLE_IC_2.5%': ic_mle.loc[0.025],
+            'Coef_MLE_IC_97.5%': ic_mle.loc[0.975],
+            'Coef_Ridge_Media': df_coefs_ridge.mean(),
+            'Coef_Ridge_IC_2.5%': ic_ridge.loc[0.025],
+            'Coef_Ridge_IC_97.5%': ic_ridge.loc[0.975],
+        })
     
     # Calcular el ANCHO del intervalo (nuestra medida de varianza)
     summary['Ancho_IC_MLE'] = summary['Coef_MLE_IC_97.5%'] - summary['Coef_MLE_IC_2.5%']

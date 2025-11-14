@@ -69,3 +69,49 @@ El pipeline final es el resultado de un intenso proceso de depuración para reso
     * **Proceso:** El dataset está muy desbalanceado (3.2% quiebras). El AUC seguía siendo ~0.59.
     * **Solución 1:** Se implementó **SMOTE** (remuestreo) solo en el set de entrenamiento para balancear las clases (50/50).
     * **Solución 2 (El Hallazgo Clave):** El problema final era el escalador. `RobustScaler` no centraba los datos (media 0, varianza 1). Dado que la `Winsorización` ya controlaba los outliers, cambiamos a **`StandardScaler`**. Este cambio fue el que permitió a los solvers del modelo converger, disparando el **AUC final a ~0.94**.
+
+
+# Instrucciones de Ejecución
+
+Para ejecutar este proyecto y replicar los resultados, solo necesitas seguir dos pasos principales: configurar el entorno e iniciar el pipeline principal.
+
+## 1. Configuración del Entorno
+
+1.  **Clonar el Repositorio** (si es necesario) y navegar a la carpeta raíz del proyecto.
+    ```bash
+    cd 'bankruptcy-probability-factor-detector'
+    ```
+
+2.  **Crear un Entorno Virtual** (Recomendado):
+    ```bash
+    python -m venv venv
+    ```
+    Y activarlo:
+    * En macOS/Linux: 
+    ```bash
+    source venv/bin/activate
+    ```
+    * En Windows: 
+    ```bash
+    Set-ExecutionPolicy RemoteSigned -Scope Process
+    ```
+    ```bash
+    venv\Scripts\activate
+    ```
+
+3.  **Instalar Dependencias:**
+    Todas las librerías necesarias (pandas, sklearn, imblearn, etc.) están listadas en `requirements.txt`. Para instalarlas, ejecuta:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  **Verificar Datos:**
+    Asegúrate de que el archivo `data.csv` esté presente dentro de la carpeta `/data`.
+
+### 2. Ejecutar el Pipeline Completo
+
+El script `main.py` está diseñado para orquestar todo el proceso de forma automática. Esto incluye el preprocesamiento, el balanceo con SMOTE, el modelado (MLE vs. Ridge) y el análisis de validación con Bootstrap.
+
+Para ejecutar todo el análisis, simplemente corre el siguiente comando desde la carpeta raíz del proyecto:
+
+```bash
+python main.py

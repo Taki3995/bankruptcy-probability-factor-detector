@@ -55,7 +55,7 @@ def main():
         # X_train_resampled es un DataFrame de pandas, y_train_resampled es una Serie
         joblib.dump(X_train_resampled, os.path.join(RUTA_MODELOS, 'X_train_resampled.joblib'))
         joblib.dump(y_train_resampled, os.path.join(RUTA_MODELOS, 'y_train_resampled.joblib'))
-        print(f"Datos guardados exitosamente en {RUTA_MODELOS}")
+        print(f"Datos guardados exitosamente en carpeta 'models'")
     except Exception as e:
         print(f"Error al guardar los datos: {e}")
 

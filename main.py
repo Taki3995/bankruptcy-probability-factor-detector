@@ -1,9 +1,11 @@
-# main.py
 import os
 import joblib
+from imblearn.over_sampling import SMOTE
+
+# Importar desde Sources
 from src.preprocesamiento import pipeline as preprocesar_datos
 from src.modelado import ejecutar_modelado
-from imblearn.over_sampling import SMOTE
+from src.validacion import validar_modelo as ejecutar_validacion
 # otras funciones necesarias 
 
 def main():
@@ -74,10 +76,12 @@ def main():
     print("\n--- Modelado Finalizado ---")
 
     # --- 4.- Ejecutar Validación (Próximo paso) ---
-    titulo3 = "Validación"
+    titulo3 = "Iniciando Validación por Bootstrap"
     print("\n" + "="*112)
     print(titulo3.center(112))
     print("="*112)
+    ejecutar_validacion(n_bootstraps=500) 
+    print("\n--- Validación Finalizada ---")
     print("\n--- Pipeline Completo Ejecutado Exitosamente ---")
 
 

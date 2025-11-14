@@ -40,7 +40,7 @@ def exploracion_inicial(df, ruta_salida_reportes):
     ruta_guardado = os.path.join(ruta_salida_reportes, 'distribucion_objetivo.png')
     plt.savefig(ruta_guardado)
     plt.close() # Cierra la figura para liberar memoria
-    print(f"\nGráfico de distribución guardado en: {ruta_guardado}")
+    print(f"\nGráfico de distribución guardado en carpeta 'reports'")
 
 # Valores Faltantes
 def revisar_nulos(df):
@@ -166,7 +166,7 @@ def graficar_boxplots(X, prioritarias, ruta_salida_reportes):
     ruta_guardado = os.path.join(ruta_salida_reportes, 'boxplots_prioritarias.png')
     plt.savefig(ruta_guardado)
     plt.close()
-    print(f"\nGráfico de boxplots guardado en: {ruta_guardado}")
+    print(f"\nGráfico de boxplots guardado en carpeta 'reports'")
     
     print("\nVariables prioritarias incluidas en el boxplot:")
     print(vars_a_graficar)
@@ -179,7 +179,7 @@ def graficar_correlacion(X, ruta_salida_reportes):
     ruta_guardado = os.path.join(ruta_salida_reportes, 'heatmap_correlacion.png')
     plt.savefig(ruta_guardado)
     plt.close()
-    print(f"Gráfico de correlación guardado en: {ruta_guardado}")
+    print(f"Gráfico de correlación guardado en carpeta 'reports'")
     
 # -------- FUNCIÓN PRINCIPAL --------
 def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):

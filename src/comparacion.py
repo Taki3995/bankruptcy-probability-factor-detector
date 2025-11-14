@@ -16,7 +16,7 @@ def generar_reporte_final():
     RUTA_MODELOS = os.path.join(BASE_DIR, 'models')
     RUTA_REPORTES = os.path.join(BASE_DIR, 'reports')
 
-    print("Cargando artefactos para el reporte de herramientas...")
+    print("Cargando artefactos para el reporte ...")
     try:
         # Cargar modelos
         modelo_mle = joblib.load(os.path.join(RUTA_MODELOS, 'modelo_mle.joblib'))

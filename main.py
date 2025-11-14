@@ -13,7 +13,6 @@ def main():
     """
     Función principal que orquesta todo el proyecto.
     """
-    
     # --- 1.- Definir Rutas ---
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     RUTA_DATOS = os.path.join(BASE_DIR, 'data', 'data.csv')
@@ -93,6 +92,7 @@ def main():
     print("\n--- Análisis Finalizado ---")
 
     print("\n--- Pipeline Completo Ejecutado Exitosamente ---")
+
 
 if __name__ == "__main__":
     main()

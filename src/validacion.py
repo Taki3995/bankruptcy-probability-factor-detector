@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import joblib
 import os
+import seaborn as sns
+
 
 from tqdm import tqdm # Para barras de progreso
 from sklearn.linear_model import LogisticRegression

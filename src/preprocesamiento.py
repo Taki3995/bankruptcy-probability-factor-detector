@@ -249,6 +249,11 @@ def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     joblib.dump(imputer, imputer_path)
     joblib.dump(scaler, scaler_path)
     joblib.dump(columnas_finales, cols_path)
+
+    print("\nGuardando datos de testeo para evaluación final...")
+    joblib.dump(X_test_scaled, os.path.join(ruta_salida_modelos, 'X_test_scaled.joblib'))
+    joblib.dump(y_test, os.path.join(ruta_salida_modelos, 'y_test.joblib'))
+
     print(f"Objetos guardados exitosamente en carpeta 'models'")
 
     return X_train_scaled, X_test_scaled, y_train, y_test

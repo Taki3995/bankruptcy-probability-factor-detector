@@ -39,7 +39,7 @@ def generar_reporte_final():
         print(f"Ocurrió un error al cargar los archivos: {e}")
         return
 
-    # === 2. Comparativa de Desempeño (Punto 2 de tu plan) ===
+    # === 2. Comparativa de Desempeño ===
     
     # Métricas Modelo MLE
     y_pred_mle = modelo_mle.predict(X_test)
@@ -104,12 +104,12 @@ def generar_reporte_final():
 
     print("\n" + "-"*70)
     print("\n## 2. Análisis del Trade-off Sesgo-Varianza (Basado en Bootstrap)")
-    print("\n### ⚖️ Varianza (Ancho Promedio del IC del 95%)")
+    print("\n###  Varianza (Ancho Promedio del IC del 95%)")
     print(f"* Ancho promedio IC (MLE):   {ancho_medio_mle:.4f}")
     print(f"* Ancho promedio IC (Ridge): {ancho_medio_ridge:.4f}")
     print(f"    > **Conclusión:** La regularización L2 (Ridge) **redujo la varianza** (inestabilidad) promedio de los coeficientes en un **{reduccion_varianza:.2f}%**.")
 
-    print("\n### 🎯 Sesgo (Contracción Promedio de Coeficientes)")
+    print("\n###  Sesgo (Contracción Promedio de Coeficientes)")
     print(f"* Magnitud promedio Coef. (MLE):   {magnitud_media_mle:.4f}")
     print(f"* Magnitud promedio Coef. (Ridge): {magnitud_media_ridge:.4f}")
     print(f"    > **Conclusión:** Ridge **introdujo sesgo (contracción)**, reduciendo la magnitud promedio de los coeficientes en un **{reduccion_magnitud:.2f}%**.")
@@ -121,14 +121,14 @@ def generar_reporte_final():
 
     print("\n" + "-"*70)
     print("\n## 3. Justificación y Recomendaciones Prácticas")
-    print("\n### 🏆 Justificación del Modelo Final")
+    print("\n### Justificación del Modelo Final")
     print("* **Para Predicción:** Ambos modelos son igualmente válidos.")
     print("* **Para Inferencia (Interpretación):** El **Modelo Ridge** es superior.")
     print("* **Razón:** Sus coeficientes son más **estables** (baja varianza) y confiables,")
     print("    mientras que los del MLE son demasiado erráticos (como se vio en el gráfico `comparacion_ic_bootstrap.png`).")
     print("    **Por lo tanto, la interpretación ingenieril se basa en el Modelo Ridge.**")
 
-    print("\n### 💡 Interpretación Ingenieril y Factores Clave (Modelo Ridge)")
+    print("\n### Interpretación Ingenieril y Factores Clave (Modelo Ridge)")
     
     print("\n**Top 5 Factores de RIESGO (Mayor Probabilidad de Quiebra):**")
     print("(Coeficientes positivos más altos)")

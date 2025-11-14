@@ -6,6 +6,7 @@ from imblearn.over_sampling import SMOTE
 from src.preprocesamiento import pipeline as preprocesar_datos
 from src.modelado import ejecutar_modelado
 from src.validacion import validar_modelo as ejecutar_validacion
+from src.comparacion import generar_reporte_final
 # otras funciones necesarias 
 
 def main():
@@ -75,15 +76,23 @@ def main():
     
     print("\n--- Modelado Finalizado ---")
 
-    # --- 4.- Ejecutar Validación (Próximo paso) ---
+    # --- 4.- Ejecutar Validación ---
     titulo3 = "Iniciando Validación por Bootstrap"
     print("\n" + "="*112)
     print(titulo3.center(112))
     print("="*112)
     ejecutar_validacion(n_bootstraps=500) 
     print("\n--- Validación Finalizada ---")
-    print("\n--- Pipeline Completo Ejecutado Exitosamente ---")
 
+    # --- 5.- Ejecutar Análisis Comparativo Final ---
+    titulo4 = "Generando Reporte de Análisis Final"
+    print("\n" + "="*60)
+    print(titulo4.center(60))
+    print("="*60)
+    generar_reporte_final()
+    print("\n--- Análisis Finalizado ---")
+
+    print("\n--- Pipeline Completo Ejecutado Exitosamente ---")
 
 if __name__ == "__main__":
     main()

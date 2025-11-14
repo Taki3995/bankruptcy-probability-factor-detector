@@ -25,7 +25,7 @@ def validar_modelo(n_bootstraps = 1000):
     ruta_reportes = os.path.join(base_dir, 'reports')
     os.makedirs(ruta_reportes, exist_ok = True)
 
-    print(f"Directorio Base: {base_dir}")
+    print(f"\nDirectorio Base: {base_dir}")
     print(f"Ruta Modelos: {ruta_modelos}")
 
     # === 2 Cargar Datos de Entrenamiento ===
@@ -49,13 +49,13 @@ def validar_modelo(n_bootstraps = 1000):
         X_train = pd.DataFrame(X_train, columns = columnas)
     else:
         X_train.columns = columnas
-    print(f"Datos de entrenamiento cargados: {X_train.shape}")
+    print(f"\nDatos de entrenamiento cargados: {X_train.shape}")
 
     # === 3 Remuestreo Bootstrap ===
     modelo_mle = modelo_mle_base
 
     mejor_C = modelo_ridge.C_[0]
-    print(f"Mejor 'C' (inverso de lambda) encontrado por CV: {mejor_C:.4f}")
+    print(f"\nMejor 'C' (inverso de lambda) encontrado por CV: {mejor_C:.4f}")
     
     modelo_ridge_final = LogisticRegression(
         penalty = 'l2',           # L2 = Ridge

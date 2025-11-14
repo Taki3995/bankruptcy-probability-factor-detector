@@ -92,7 +92,7 @@ def ejecutar_modelado(X_train, y_train, X_test, y_test, ruta_salida_modelos, rut
     )
     
     # --- Entrenar y Evaluar Modelos ---
-    print("Entrenando Modelo 1: Regresión Logística (MLE)...")
+    print("\nEntrenando Modelo 1: Regresión Logística (MLE)...")
     modelo_mle_entrenado = entrenar_evaluar_modelo(
         modelo_mle, X_train, y_train, X_test, y_test, "Regresión Logística (MLE)", ruta_salida_reportes)
     

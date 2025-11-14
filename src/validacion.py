@@ -35,11 +35,11 @@ def validar_modelo(n_bootstraps = 1000):
         y_train = joblib.load(os.path.join(ruta_modelos, 'y_train_resampled.joblib'))
 
         # Cargar los nombres de las columnas (guardados por preprocesamiento.py)
-        columnas = joblib.load(os.path.join(ruta_modelos, 'columnas_modelo.joblib'))
+        columnas = joblib.load(os.path.join(ruta_modelos, 'columnas_finales.joblib'))
 
         # Cargar los modelos entrenados (guardados por modelado.py via main.py)
-        modelo_mle = joblib.load(os.path.join(ruta_modelos, 'modelo_logistico_mle.joblib'))
-        modelo_ridge = joblib.load(os.path.join(ruta_modelos, 'modelo_logistico_ridge.joblib'))
+        modelo_mle = joblib.load(os.path.join(ruta_modelos, 'modelo_mle.joblib'))
+        modelo_ridge = joblib.load(os.path.join(ruta_modelos, 'modelo_ridge_cv.joblib'))
 
     except Exception as e:
         print(f"Ocurrió un error al cargar los archivos: {e}")

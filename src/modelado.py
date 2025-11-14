@@ -12,7 +12,7 @@ def entrenar_evaluar_modelo(modelo, X_train, y_train, X_test, y_test, nombre_mod
     """
     Entrena un modelo y muestra sus métricas de evaluación clave.
     """
-    print(f"--- Evaluando: {nombre_modelo} ---")
+    print(f"\n--- Evaluando: {nombre_modelo} ---")
     
     # Entrenar
     modelo.fit(X_train, y_train)
@@ -23,7 +23,7 @@ def entrenar_evaluar_modelo(modelo, X_train, y_train, X_test, y_test, nombre_mod
     
     # Calcular y mostrar métricas
     auc = roc_auc_score(y_test, y_pred_proba)
-    print(f"Área Bajo la Curva ROC (AUC): {auc:.4f}")
+    print(f"\nÁrea Bajo la Curva ROC (AUC): {auc:.4f}")
     
     print("\nReporte de Clasificación:")
     print(classification_report(y_test, y_pred, target_names=['No Quiebra (0)', 'Quiebra (1)']))

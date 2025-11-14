@@ -22,8 +22,8 @@ def cargar_datos(ruta_csv):
     """
     df = pd.read_csv(ruta_csv)
     df.columns = df.columns.str.strip()  # limpiar espacios
-    print(f"Shape: {df.shape}")
-    print("Primeras filas:")
+    print(f"\nShape: {df.shape}")
+    print("\nPrimeras filas:")
     print(df.head())
     return df
 
@@ -40,7 +40,7 @@ def exploracion_inicial(df, ruta_salida_reportes):
     ruta_guardado = os.path.join(ruta_salida_reportes, 'distribucion_objetivo.png')
     plt.savefig(ruta_guardado)
     plt.close() # Cierra la figura para liberar memoria
-    print(f"Gráfico de distribución guardado en: {ruta_guardado}")
+    print(f"\nGráfico de distribución guardado en: {ruta_guardado}")
 
 # Valores Faltantes
 def revisar_nulos(df):
@@ -92,11 +92,7 @@ def winsorizar_df(df, limits=[0.01, 0.01]):
 def limpiar_columnas(df, corr_pairs, prioritarias):
     # Eliminar columnas constantes
     constantes = [col for col in df.columns if df[col].nunique() == 1 and col != 'Bankrupt?']
-    print(f"Columnas constantes eliminadas: {constantes}")
-
-    # Ridge maneja este problema
-    print("\n--- PASO DE ELIMINACIÓN POR CORRELACIÓN DESACTIVADO ---")
-    
+    print(f"\nColumnas constantes eliminadas: {constantes}")   
     eliminar = constantes # Ahora solo eliminamos las constantes
     
     return df.drop(columns=eliminar, errors="ignore")
@@ -170,7 +166,7 @@ def graficar_boxplots(X, prioritarias, ruta_salida_reportes):
     ruta_guardado = os.path.join(ruta_salida_reportes, 'boxplots_prioritarias.png')
     plt.savefig(ruta_guardado)
     plt.close()
-    print(f"Gráfico de boxplots guardado en: {ruta_guardado}")
+    print(f"\nGráfico de boxplots guardado en: {ruta_guardado}")
     
     print("\nVariables prioritarias incluidas en el boxplot:")
     print(vars_a_graficar)
@@ -207,7 +203,7 @@ def pipeline(ruta_csv, ruta_salida_modelos, ruta_salida_reportes):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
-    print(f"Shape antes de VIF: Train {X_train.shape}, Test {X_test.shape}")
+    print(f"Shape: Train {X_train.shape}, Test {X_test.shape}")
 
     # 4. Imputación (Ajustar en Train, transformar en ambos)
     imputer = SimpleImputer(strategy='median')

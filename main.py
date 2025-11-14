@@ -27,25 +27,26 @@ def main():
     
     # --- 2.- Ejecutar Preprocesamiento ---
     titulo1 = "Iniciando Preprocesamiento"
-    print("\n" + "="*60)
-    print(titulo1.center(60))
-    print("="*60)
+    print("\n" + "="*112)
+    print(titulo1.center(112))
+    print("="*112)
     
     X_train, X_test, y_train, y_test = preprocesar_datos(ruta_csv=RUTA_DATOS, ruta_salida_modelos=RUTA_MODELOS, ruta_salida_reportes=RUTA_REPORTES)
 
     print("\n--- Preprocesamiento Finalizado ---")
 
     # Aplicar SMOTE
-    print("\n" + "="*60)
+    print("\n" + "-"*60)
     texto5 = "Aplicando SMOTE para balancear el set de entrenamiento..."
-    print(texto5.center)
+    print(texto5.center(60))
+    print("-"*60)
     smote = SMOTE(random_state=42)
     X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
     print(f"Shape original de entrenamiento: {X_train.shape}")
     print(f"Shape remuestreado de entrenamiento: {X_train_resampled.shape}")
-    print("Distribución de clases de entrenamiento (después de SMOTE):")
+    print("\nDistribución de clases de entrenamiento (después de SMOTE):")
     print(y_train_resampled.value_counts(normalize=True))
-    print("="*60)
+    print("-"*60)
 
     print("\nGuardando datos de entrenamiento (con SMOTE) para validación...")
     try:
@@ -58,9 +59,9 @@ def main():
 
     # --- 3.- Ejecutar Modelado ---
     titulo2 = "Iniciando Modelado"
-    print("\n" + "="*60)
-    print(titulo2.center(60))
-    print("="*60)
+    print("\n" + "="*112)
+    print(titulo2.center(112))
+    print("="*112)
 
     # Pasar datos remuestreados al modelo
     modelo_logistico, modelo_ridge = ejecutar_modelado(
@@ -74,9 +75,9 @@ def main():
 
     # --- 4.- Ejecutar Validación (Próximo paso) ---
     titulo3 = "Validación"
-    print("\n" + "="*60)
-    print(titulo3.center(60))
-    print("="*60)
+    print("\n" + "="*112)
+    print(titulo3.center(112))
+    print("="*112)
     print("\n--- Pipeline Completo Ejecutado Exitosamente ---")
 
 
